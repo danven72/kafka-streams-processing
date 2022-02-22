@@ -1,0 +1,24 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: kstream-producer
+  cloud:
+    stream:
+      function:
+        destination: numberProducer
+      bindings:
+        numberProducer-out-0:
+          destination: numbers-test
+          producer:
+            use-native-encoding: true
+      kafka:
+        bindings:
+          numberProducer-out-0:
+            producer:
+              configuration:
+                value:
+                  serializer: org.apache.kafka.common.serialization.LongSerializer
+        binder:
+          brokers:
+          - localhost:9092
