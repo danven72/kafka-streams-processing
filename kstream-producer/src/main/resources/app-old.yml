@@ -4,9 +4,9 @@ spring:
   application:
     name: kstream-producer
   cloud:
+    function:
+      definition: numberProducer
     stream:
-      function:
-        destination: numberProducer
       bindings:
         numberProducer-out-0:
           destination: numbers-test
