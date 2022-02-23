@@ -26,7 +26,6 @@ public class KafkaProcessor {
         return kStream -> kStream.filter((k, o) -> "ITALY".equals(o.getDestination()))
                 .peek((k, o) -> System.out.println("Italian Order selected: " + o))
                 .mapValues(o -> o);
-
     }
 
 }

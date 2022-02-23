@@ -1,14 +1,9 @@
 spring.cloud.stream:
   function:
-    definition: orderItalianProcessor #,evenNumberSquareProcessor
+    definition: orderItalianProcessor
   bindings:
-#    evenNumberSquareProcessor-in-0:
-#      destination: numbers
-#    evenNumberSquareProcessor-out-0:
-#      destination: squaredNumbers
     orderItalianProcessor-in-0:
       destination: orders
-#      use-native-encoding: true
       content-type: application/json
     orderItalianProcessor-out-0:
       destination: orders-italian
