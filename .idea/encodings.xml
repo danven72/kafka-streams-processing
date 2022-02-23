@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/kstream-consumer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kstream-processor/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kstream-producer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/model-library/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

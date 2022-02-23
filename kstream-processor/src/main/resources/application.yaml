@@ -1,11 +1,18 @@
 spring.cloud.stream:
   function:
-    definition: evenNumberSquareProcessor
+    definition: orderItalianProcessor #,evenNumberSquareProcessor
   bindings:
-    evenNumberSquareProcessor-in-0:
-      destination: numbers
-    evenNumberSquareProcessor-out-0:
-      destination: squaredNumbers
+#    evenNumberSquareProcessor-in-0:
+#      destination: numbers
+#    evenNumberSquareProcessor-out-0:
+#      destination: squaredNumbers
+    orderItalianProcessor-in-0:
+      destination: orders
+#      use-native-encoding: true
+      content-type: application/json
+    orderItalianProcessor-out-0:
+      destination: orders-italian
+      content-type: application/json
   kafka:
     binder:
       brokers:
