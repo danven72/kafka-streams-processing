@@ -1,5 +1,6 @@
 package it.proactivity.training.kstreamprocessor.business;
 
+import it.proactivity.training.kafkastream.model.Destination;
 import it.proactivity.training.kafkastream.model.Order;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.context.annotation.Bean;
@@ -10,29 +11,23 @@ import java.util.function.Function;
 @Configuration
 public class KafkaProcessor {
 
-    /*
-    @Bean
-    public Function<KStream<String, Long>, KStream<String, Long>> evenNumberSquareProcessor() {
-        return kStream -> kStream.filter((k, v) -> v % 2 == 0)
-                .peek((k, v) -> System.out.println("Squaring Even: " + v))
-                .mapValues(v -> v * v);
-    }
-
-     */
+    private final static Double ITALY_TAX_QUOTE = 0.21d;
+    private final static Double FRANCE_TAX_QUOTE = 0.19d;
+    private final static Double SPAIN_TAX_QUOTE = 0.17d;
 
     @Bean
     public Function<KStream<Long, Order>, KStream<Long, Order>> calculateItalianTaxProcessor() {
-        return process("ITALY", 0.21d);
+        return process(Destination.Country.ITALY.name(), ITALY_TAX_QUOTE);
     }
 
     @Bean
     public Function<KStream<Long, Order>, KStream<Long, Order>> calculateFrenchProcessor() {
-        return process("FRANCE", 0.19d);
+        return process(Destination.Country.FRANCE.name(), FRANCE_TAX_QUOTE);
     }
 
     @Bean
     public Function<KStream<Long, Order>, KStream<Long, Order>> calculateSpanishProcessor() {
-        return process("SPAIN", 0.23d);
+        return process(Destination.Country.SPAIN.name(), SPAIN_TAX_QUOTE);
     }
 
     private Function<KStream<Long, Order>, KStream<Long, Order>> process(String country, double taxQuote) {
@@ -43,11 +38,5 @@ public class KafkaProcessor {
                 })
                 .mapValues(o -> o);
     }
-
-
-
-
-
-
 
 }

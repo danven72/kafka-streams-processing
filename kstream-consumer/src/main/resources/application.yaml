@@ -1,9 +1,16 @@
 spring.cloud.stream:
   function:
-    definition: squaredNumberConsumer
+    definition: ordersItalianConsumer;ordersFrenchConsumer;ordersSpanishConsumer
   bindings:
-    squaredNumberConsumer-in-0:
-      destination: squaredNumbers
+    ordersItalianConsumer-in-0:
+      destination: orders-italy-taxed
+      content-type: application/json
+    ordersFrenchConsumer-in-0:
+      destination: orders-french-taxed
+      content-type: application/json
+    ordersSpanishConsumer-in-0:
+      destination: orders-spain-taxed
+      content-type: application/json
   kafka:
     binder:
       brokers:

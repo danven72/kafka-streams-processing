@@ -17,5 +17,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-binder-kafka-streams</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>it.proactivity.training</groupId>
+			<artifactId>model-library</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>
