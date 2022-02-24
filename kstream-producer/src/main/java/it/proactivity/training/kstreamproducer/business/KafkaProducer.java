@@ -16,8 +16,6 @@ import java.util.function.Supplier;
 @Configuration
 public class KafkaProducer {
 
-    private final static List<String> destinationsList = Arrays.asList("ITALY", "FRANCE", "SPAIN");
-
     @Bean
     public Supplier<Flux<Message<Order>>> orderProducer() {
         return () -> Flux.range(1, 110)
