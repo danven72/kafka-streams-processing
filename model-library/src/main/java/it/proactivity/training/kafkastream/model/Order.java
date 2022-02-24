@@ -7,15 +7,17 @@ public class Order {
     private String descritpion;
     private Double price;
     private String destination;
+    private Double taxes;
 
     public Order() {
     }
 
-    public Order(Long id, String descritpion, Double price, String destination) {
+    public Order(Long id, String descritpion, Double price, String destination, Double taxes) {
         this.id = id;
         this.descritpion = descritpion;
         this.price = price;
         this.destination = destination;
+        this.taxes = taxes;
     }
 
     public Long getId() {
@@ -50,17 +52,25 @@ public class Order {
         this.destination = destination;
     }
 
+    public Double getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(Double taxes) {
+        this.taxes = taxes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(getId(), order.getId()) && Objects.equals(getDescritpion(), order.getDescritpion()) && Objects.equals(getPrice(), order.getPrice()) && Objects.equals(getDestination(), order.getDestination());
+        return Objects.equals(getId(), order.getId()) && Objects.equals(getDescritpion(), order.getDescritpion()) && Objects.equals(getPrice(), order.getPrice()) && Objects.equals(getDestination(), order.getDestination()) && Objects.equals(getTaxes(), order.getTaxes());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDescritpion(), getPrice(), getDestination());
+        return Objects.hash(getId(), getDescritpion(), getPrice(), getDestination(), getTaxes());
     }
 
     @Override
@@ -70,6 +80,7 @@ public class Order {
                 ", descritpion='" + descritpion + '\'' +
                 ", price=" + price +
                 ", destination='" + destination + '\'' +
+                ", taxes=" + taxes +
                 '}';
     }
 }

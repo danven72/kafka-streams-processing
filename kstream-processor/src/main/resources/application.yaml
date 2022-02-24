@@ -1,12 +1,24 @@
 spring.cloud.stream:
   function:
-    definition: orderItalianProcessor
+    definition: calculateItalianTaxProcessor;calculateFrenchProcessor;calculateSpanishProcessor
   bindings:
-    orderItalianProcessor-in-0:
+    calculateItalianTaxProcessor-in-0:
       destination: orders
       content-type: application/json
-    orderItalianProcessor-out-0:
-      destination: orders-italian
+    calculateItalianTaxProcessor-out-0:
+      destination: orders-italy-taxed
+      content-type: application/json
+    calculateFrenchProcessor-in-0:
+      destination: orders
+      content-type: application/json
+    calculateFrenchProcessor-out-0:
+      destination: orders-french-taxed
+      content-type: application/json
+    calculateSpanishProcessor-in-0:
+      destination: orders
+      content-type: application/json
+    calculateSpanishProcessor-out-0:
+      destination: orders-spain-taxed
       content-type: application/json
   kafka:
     binder:

@@ -4,7 +4,6 @@ import it.proactivity.training.kafkastream.model.Order;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.Message;
 
 import java.util.function.Function;
 
@@ -22,10 +21,33 @@ public class KafkaProcessor {
      */
 
     @Bean
-    public Function<KStream<Long, Order>, KStream<Long, Order>> orderItalianProcessor() {
-        return kStream -> kStream.filter((k, o) -> "ITALY".equals(o.getDestination()))
-                .peek((k, o) -> System.out.println("Italian Order selected: " + o))
+    public Function<KStream<Long, Order>, KStream<Long, Order>> calculateItalianTaxProcessor() {
+        return process("ITALY", 0.21d);
+    }
+
+    @Bean
+    public Function<KStream<Long, Order>, KStream<Long, Order>> calculateFrenchProcessor() {
+        return process("FRANCE", 0.19d);
+    }
+
+    @Bean
+    public Function<KStream<Long, Order>, KStream<Long, Order>> calculateSpanishProcessor() {
+        return process("SPAIN", 0.23d);
+    }
+
+    private Function<KStream<Long, Order>, KStream<Long, Order>> process(String country, double taxQuote) {
+        return kStream -> kStream.filter((k, o) -> country.equals(o.getDestination()))
+                .peek((k, o) -> {
+                    System.out.println("Order from " + country + " selected: " + o);
+                    o.setTaxes(o.getPrice() * taxQuote);
+                })
                 .mapValues(o -> o);
     }
+
+
+
+
+
+
 
 }

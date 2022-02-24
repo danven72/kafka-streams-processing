@@ -39,7 +39,7 @@ public class KafkaProducer {
 
     private Message<Order> buildMessage(int i) {
         String destination = destinationsList.get(random.nextInt(destinationsList.size()));
-        Order order = new Order((long) i,"Order_"+i, 30.55d+i, destination);
+        Order order = new Order((long) i,"Order_"+i, 30.55d+i, destination, 0d);
         return MessageBuilder.withPayload(order)
                 //.setHeader(KafkaHeaders.MESSAGE_KEY, "TEST")
                 .build();
