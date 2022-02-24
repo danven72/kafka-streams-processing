@@ -21,3 +21,49 @@ addresses to one of the following topic: "orders-italy-taxed", "orders-french-ta
 
 The consumer picks all messages from each "order-<country>-taxed" topic and simulates an email sent to the appropriate courier.
 
+### How it works
+First, pay attention to the correct dependencies in the pom.xml files.</br>
+When you have @Bean annotated method in a @Configuration annotated class that return a Supplier<T> Functional interface, it is associated by spring boot to an output stream. In the application.yaml magic happens (see kstream-producer).<br/>
+```
+spring.cloud.stream:
+  function:
+    definition: <Supplier-method>
+  bindings:
+    <Supplier-method>-out-0:
+      destination: <kafka-topic-name>
+      content-type: application/json
+```
+The same things happens whe you have a @Bean methods annotated that return Function<K,T>. If K and T are KStream types, the application.yaml file binds all together (see kstream-processor)
+```
+spring.cloud.stream:
+  function:
+    definition: <Function-method1>;<Function-method2>
+  bindings:
+    <Function-method1>-in-0:
+      destination: <kafka-topic-input>
+      content-type: application/json
+    <Function-method1>-out-0:
+      destination: <kafka-topic-output>
+      content-type: application/json
+    <Function-method2>-in-0:
+      destination: <kafka-topic-input>
+      content-type: application/json
+    <Function-method2>-out-0:
+      destination: <kafka-topic-output>
+      content-type: application/json
+```
+Likewise, if you have a method @Bean annotated that return a Consumer<KStream<K,T>> functional Interface, you can binds it to an Input Kakfa topic using application.yaml (see kstream-consumer).
+```
+spring.cloud.stream:
+  function:
+    definition: <Consumer-method1>;<Consumer-method2>
+  bindings:
+    <Consumer-method1>-in-0:
+      destination: <kafka-topic-input>
+      content-type: application/json
+    <Consumer-method2>-in-0:
+      destination: <kafka-topic-input>
+      content-type: application/json
+```
+
+
