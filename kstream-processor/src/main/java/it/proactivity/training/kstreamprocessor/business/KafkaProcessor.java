@@ -33,10 +33,13 @@ public class KafkaProcessor {
     private Function<KStream<Long, Order>, KStream<Long, Order>> process(String country, double taxQuote) {
         return kStream -> kStream.filter((k, o) -> country.equals(o.getDestination()))
                 .peek((k, o) -> {
-                    System.out.println("Order from " + country + " selected: " + o);
-                    o.setTaxes(o.getPrice() * taxQuote);
+                    System.out.print("Order from " + country + " selected: " + o);
                 })
-                .mapValues(o -> o);
+                .mapValues(o -> {
+                    o.setTaxes(o.getPrice() * taxQuote);
+                    System.out.println(" - Tax calculated:" + o.getTaxes());
+                    return o;
+                });
     }
 
 }
