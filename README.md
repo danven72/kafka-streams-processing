@@ -14,10 +14,10 @@ kstream-consumer  --> Application that consume from all topics
 - Kafka installed and running in localhost:9092 (Follow steps 1, 2 of this <a href="https://kafka.apache.org/quickstart">link</a>)
 
 ### Main branch example
-The Producer build Order objects and publish them on "orders" topic.
+The Producer builds Order objects and publishes them on "orders" topic.
 
-The Processor filter the Order objects, picking from "orders" topic, by Destination, calculate the appropriate taxes and
-address to one of the following topic: "orders-italy-taxed", "orders-french-taxed", "orders-spain-taxed".
+The Processor filters the Order objects, picking from "orders" topic, by Destination, calculates the appropriate taxes and
+addresses to one of the following topic: "orders-italy-taxed", "orders-french-taxed", "orders-spain-taxed".
 
-The consumer picks all messages from each "order-<country>-taxed" topic and simulate an email sent to the appropriate courier.
+The consumer picks all messages from each "order-<country>-taxed" topic and simulates an email sent to the appropriate courier.
 
