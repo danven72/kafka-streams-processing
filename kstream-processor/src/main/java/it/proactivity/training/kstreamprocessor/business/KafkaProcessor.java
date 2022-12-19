@@ -21,12 +21,12 @@ public class KafkaProcessor {
     }
 
     @Bean
-    public Function<KStream<Long, Order>, KStream<Long, Order>> calculateFrenchProcessor() {
+    public Function<KStream<Long, Order>, KStream<Long, Order>> calculateFrenchTaxProcessor() {
         return process(Destination.Country.FRANCE.name(), FRANCE_TAX_QUOTE);
     }
 
     @Bean
-    public Function<KStream<Long, Order>, KStream<Long, Order>> calculateSpanishProcessor() {
+    public Function<KStream<Long, Order>, KStream<Long, Order>> calculateSpanishTaxProcessor() {
         return process(Destination.Country.SPAIN.name(), SPAIN_TAX_QUOTE);
     }
 
