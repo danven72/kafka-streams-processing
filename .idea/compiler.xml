@@ -7,14 +7,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="kstreamproducer" />
-        <module name="kstreamconsumer" />
+        <module name="kstream-producer" />
         <module name="kstreamprocessor" />
+        <module name="kstreamconsumer" />
+        <module name="kstream-consumer" />
         <module name="model-library" />
+        <module name="kstream-processor" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="kstream-consumer" options="-parameters" />
+      <module name="kstream-processor" options="-parameters" />
+      <module name="kstream-producer" options="-parameters" />
       <module name="kstreamconsumer" options="-parameters" />
       <module name="kstreamprocessor" options="-parameters" />
       <module name="kstreamproducer" options="-parameters" />

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Order {
     private Long id;
-    private String descritpion;
+    private String description;
     private Double price;
     private String destination;
     private Double taxes;
@@ -12,9 +12,9 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, String descritpion, Double price, String destination, Double taxes) {
+    public Order(Long id, String description, Double price, String destination, Double taxes) {
         this.id = id;
-        this.descritpion = descritpion;
+        this.description = description;
         this.price = price;
         this.destination = destination;
         this.taxes = taxes;
@@ -28,12 +28,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getDescritpion() {
-        return descritpion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescritpion(String descritpion) {
-        this.descritpion = descritpion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Double getPrice() {
@@ -65,19 +65,19 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(getId(), order.getId()) && Objects.equals(getDescritpion(), order.getDescritpion()) && Objects.equals(getPrice(), order.getPrice()) && Objects.equals(getDestination(), order.getDestination()) && Objects.equals(getTaxes(), order.getTaxes());
+        return Objects.equals(getId(), order.getId()) && Objects.equals(getDescription(), order.getDescription()) && Objects.equals(getPrice(), order.getPrice()) && Objects.equals(getDestination(), order.getDestination()) && Objects.equals(getTaxes(), order.getTaxes());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDescritpion(), getPrice(), getDestination(), getTaxes());
+        return Objects.hash(getId(), getDescription(), getPrice(), getDestination(), getTaxes());
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", descritpion='" + descritpion + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
                 ", destination='" + destination + '\'' +
                 ", taxes=" + taxes +

@@ -30,7 +30,8 @@ public class KafkaConsumer {
     }
 
     private Consumer<KStream<Long, Order>> ordersConsumer(String courierEmail) {
-        return strem -> strem.foreach((key, order) -> {
+        return stream ->
+                stream.foreach((key, order) -> {
             final StringBuilder message = new StringBuilder("The order with id: ")
                     .append(order.getId())
                     .append(", destination: ")
